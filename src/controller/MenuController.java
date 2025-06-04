@@ -1,26 +1,32 @@
 package controller;
 
-import model.Menu;
-
-import java.util.ArrayList;
-import java.util.List;
+import model.*;
+import java.util.*;
 
 public class MenuController {
     private List<Menu> menuList = new ArrayList<>();
 
     public MenuController() {
-        menuList.add(new Menu(1, "불고기버거", "고기 가득", 3000, "Burgers"));
-        menuList.add(new Menu(2, "불고기버거 세트", "버거+감튀+콜라", 5000, "Burgers"));
-        menuList.add(new Menu(3, "감자튀김(R)", "사이드 감튀", 2000, "Sides"));
-        menuList.add(new Menu(4, "콜라(R)", "시원한 콜라", 1500, "Drinks"));
-        // 추가하자
+        menuList.add(new BurgerMenu(1, "불고기버거", "고기 가득", 3000, false));
+        menuList.add(new BurgerMenu(2, "불고기버거 세트", "버거+감튀(R)+콜라(R)", 5000, true));
+        menuList.add(new BurgerMenu(3, "치즈버거", "치즈 가득", 2500, false));
+        menuList.add(new BurgerMenu(4, "치즈버거 세트", "버거+감튀(R)+콜라(R)", 4500, true));
+        menuList.add(new BurgerMenu(5, "새우버거", "통통한 새우패티", 4000, false));
+        menuList.add(new BurgerMenu(6, "새우버거 세트", "버거+감튀(R)+콜라(R)", 6000, true));
+        menuList.add(new SideMenu(7, "감자튀김", "사이드 감튀", 2000, "R"));
+        menuList.add(new SideMenu(8, "감자튀김", "사이드 감튀", 2500, "L"));
+        menuList.add(new SideMenu(9, "양파튀김", "사이드 양튀", 3000, "R"));
+        menuList.add(new SideMenu(10, "양파튀김", "사이드 양튀", 4000, "L"));
+        menuList.add(new SideMenu(11, "아이스크림", "사이드 아이스크림", 1500, "R"));
+        menuList.add(new DrinkMenu(12, "콜라", "시원한 콜라", 1500, "R"));
+        menuList.add(new DrinkMenu(13, "콜라", "시원한 콜라", 2000, "L"));
+        menuList.add(new DrinkMenu(14, "사이다", "시원한 사이다", 1500, "R"));
+        menuList.add(new DrinkMenu(15, "사이다", "시원한 사이다", 2000, "L"));
+        menuList.add(new DrinkMenu(16, "오렌지주스", "상큼한 오렌지주스", 3000, "R"));
+        menuList.add(new DrinkMenu(17, "오렌지주스", "상큼한 오렌지주스", 4000, "L"));
     }
 
     public List<Menu> getSalesMenu() {
-        return menuList;
-    }
-
-    public List<Menu> getMenuInfo() {
         return menuList;
     }
 

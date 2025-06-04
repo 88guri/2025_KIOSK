@@ -1,16 +1,18 @@
 package model;
 
+import value.Amount;
 import java.util.*;
 
 public class Cart {
+    private int totalAmount;
     private List<CartItem> items = new ArrayList<>();
 
-    public int getTotalAmount() {
+    public Amount getTotalAmount() {
         int total = 0;
         for (CartItem item : items) {
             total += item.getTotalPrice();
         }
-        return total;
+        return new Amount(total);
     }
 
     public void addToCart(Menu menu, int quantity) {
@@ -27,10 +29,14 @@ public class Cart {
         items.removeIf(item -> item.getMenu().getId() == menu.getId());
     }
 
-    public void updateItemQuantity(Menu menu, int qty) {
+    public void updateItemQuantity(Menu menu, int newQty) {
         for (CartItem item : items) {
             if (item.getMenu().getId() == menu.getId()) {
-                item.setQuantity(qty);
+                if (newQty <= 0) {
+                    removeFromCart(menu);
+                } else {
+                    item.setQuantity(newQty);
+                }
                 return;
             }
         }

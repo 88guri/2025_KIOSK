@@ -1,16 +1,15 @@
 package ui;
 
+import domain.PaymentInfo;
+
 public class Printer {
-    public void print(String info) {
-        System.out.println("=== 영수증 출력 ===");
-        System.out.println(info);
+    public void print(PaymentInfo info) {
+        System.out.println("---- 영수증 ----");
+        System.out.println(info.toString());
+        System.out.println("---------------");
     }
 
     public void printCouponUsage(String code, boolean success) {
-        if (success) {
-            System.out.println("쿠폰 " + code + " 사용 성공!");
-        } else {
-            System.out.println("쿠폰 " + code + " 사용 실패!");
-        }
+        System.out.println("쿠폰 " + code + (success ? " 사용 성공!" : " 사용 실패!"));
     }
 }
