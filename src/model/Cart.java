@@ -1,11 +1,11 @@
 package model;
 
 import value.Amount;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Cart {
-    private int totalAmount;
-    private List<CartItem> items = new ArrayList<>();
+    private final List<CartItem> items = new ArrayList<>();
 
     public Amount getTotalAmount() {
         int total = 0;
@@ -17,7 +17,7 @@ public class Cart {
 
     public void addToCart(Menu menu, int quantity) {
         for (CartItem item : items) {
-            if (item.getMenu().getId() == menu.getId()) {
+            if (item.getMenu().getId() == menu.getId() && item.isSet() == ((menu instanceof BurgerMenu bm) && bm.isSet())) {
                 item.setQuantity(item.getQuantity() + quantity);
                 return;
             }
@@ -25,15 +25,15 @@ public class Cart {
         items.add(new CartItem(menu, quantity));
     }
 
-    public void removeFromCart(Menu menu) {
-        items.removeIf(item -> item.getMenu().getId() == menu.getId());
+    public void removeFromCart(Menu menu, boolean isSet) {
+        items.removeIf(item -> item.getMenu().getId() == menu.getId() && item.isSet() == isSet);
     }
 
-    public void updateItemQuantity(Menu menu, int newQty) {
+    public void updateItemQuantity(Menu menu, boolean isSet, int newQty) {
         for (CartItem item : items) {
-            if (item.getMenu().getId() == menu.getId()) {
+            if (item.getMenu().getId() == menu.getId() && item.isSet() == isSet) {
                 if (newQty <= 0) {
-                    removeFromCart(menu);
+                    removeFromCart(menu, isSet);
                 } else {
                     item.setQuantity(newQty);
                 }

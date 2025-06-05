@@ -1,8 +1,8 @@
 package domain;
 
 public class PaymentResult {
-    private boolean success;
-    private String message;
+    private final boolean success;
+    private final String message;
 
     public PaymentResult(boolean success, String message) {
         this.success = success;

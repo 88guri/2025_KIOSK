@@ -1,8 +1,8 @@
 package domain;
 
 public class PaymentOption {
-    private String type;
-    private String description;
+    private final String type;
+    private final String description;
 
     public PaymentOption(String type, String description) {
         this.type = type;

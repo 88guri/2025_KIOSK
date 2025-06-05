@@ -2,7 +2,7 @@ package controller;
 
 import domain.*;
 import value.Amount;
-import java.util.*;
+import java.util.List;
 
 public class PaymentController {
     private String selectedMethod;
@@ -16,12 +16,11 @@ public class PaymentController {
         return new PaymentGateway().authorize(amount);
     }
 
-    public void setPaymentMethod() {
-        this.selectedMethod = "Card"; // 기본값 예시
-    }
-
     public List<PaymentOption> getAvailableOptions() {
-        return List.of(new PaymentOption("Card", "신용카드"), new PaymentOption("Cash", "현금"));
+        return List.of(
+                new PaymentOption("Card", "신용카드"),
+                new PaymentOption("Cash", "현금")
+        );
     }
 
     public void validateAndSetPaymentMethod(String optionType) {

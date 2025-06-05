@@ -3,8 +3,8 @@ package domain;
 import value.Amount;
 
 public class PaymentInfo {
-    private Amount amount;
-    private String method;
+    private final Amount amount;
+    private final String method;
 
     public PaymentInfo(Amount amount, String method) {
         this.amount = amount;

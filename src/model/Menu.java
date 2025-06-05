@@ -25,6 +25,6 @@ public abstract class Menu {
 
     @Override
     public String toString() {
-        return id + ". " + name + " - " + price;
+        return id + ". " + name + " - " + price + "원";
     }
 }

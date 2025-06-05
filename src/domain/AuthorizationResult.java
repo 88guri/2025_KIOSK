@@ -1,8 +1,8 @@
 package domain;
 
 public class AuthorizationResult {
-    private boolean approved;
-    private String reason;
+    private final boolean approved;
+    private final String reason;
 
     public AuthorizationResult(boolean approved, String reason) {
         this.approved = approved;
