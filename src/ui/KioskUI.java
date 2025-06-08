@@ -79,6 +79,7 @@ public class KioskUI {
         }
     }
 
+    // KioskUI.java → handleCategoryMenu 리팩토링 부분
     private void handleCategoryMenu(Scanner sc, String category) {
         List<Menu> menus = kioskController.getMenuByCategory(category);
         menuView.showMenuList(menus);
@@ -102,17 +103,15 @@ public class KioskUI {
             int price = selected.getPrice();
             if (isSet) price += 2000;
 
-            CartItem item = new CartItem(selected, qty, isSet, price);
-            kioskController.getCartController().addItemDirect(item);
-
+            kioskController.addMenuToCart(selected, qty, isSet, price);
             cartView.printAddToCart(selected.getName() + (isSet ? " (세트)" : ""), qty);
         }
     }
-
+    // KioskUI.java → handleCartMenu 리팩토링 부분
     private void handleCartMenu(Scanner sc) {
         while (true) {
-            List<CartItem> cartItems = kioskController.getCartController().getCartItems();
-            cartView.printCartItems(cartItems, kioskController.getCartController().getTotalAmount());
+            List<CartItem> cartItems = kioskController.getCartItems();
+            cartView.printCartItems(cartItems, kioskController.getCartTotalAmount());
             if (cartItems.isEmpty()) break;
 
             cartView.printCartMenu();
@@ -136,15 +135,14 @@ public class KioskUI {
                 System.out.print("새 수량 입력: ");
                 int newQty = sc.nextInt();
                 sc.nextLine();
-                kioskController.getCartController().updateItemQuantity(target.getMenu(), target.isSet(), newQty);
+                kioskController.updateCartItemQuantity(target.getMenu(), target.isSet(), newQty);
                 cartView.printQuantityUpdate(target.getMenu().getName() + (target.isSet() ? " (세트)" : ""), newQty);
             } else if (cartOpt == 2) {
-                kioskController.getCartController().removeFromCart(target.getMenu(), target.isSet());
+                kioskController.removeCartItem(target.getMenu(), target.isSet());
                 cartView.printRemovedItem(target.getMenu().getName() + (target.isSet() ? " (세트)" : ""));
             }
         }
     }
-
 
     private void handlePayment(Scanner sc) {
         paymentView.printPaymentChoice();
