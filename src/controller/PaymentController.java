@@ -32,6 +32,6 @@ public class PaymentController {
     }
 
     public boolean validateCoupon(String code) {
-        return code.equals("쭌선진");
+        return code.equals("쭌션진");
     }
 }
