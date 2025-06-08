@@ -79,7 +79,6 @@ public class KioskUI {
         }
     }
 
-    // KioskUI.java → handleCategoryMenu 리팩토링 부분
     private void handleCategoryMenu(Scanner sc, String category) {
         List<Menu> menus = kioskController.getMenuByCategory(category);
         menuView.showMenuList(menus);
@@ -107,7 +106,7 @@ public class KioskUI {
             cartView.printAddToCart(selected.getName() + (isSet ? " (세트)" : ""), qty);
         }
     }
-    // KioskUI.java → handleCartMenu 리팩토링 부분
+
     private void handleCartMenu(Scanner sc) {
         while (true) {
             List<CartItem> cartItems = kioskController.getCartItems();
