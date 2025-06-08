@@ -29,7 +29,7 @@ public class CartView {
             System.out.println("총합: " + total);
         }
     }
-
+    
     public void printCartMenu() {
         System.out.println("1. 수량 수정");
         System.out.println("2. 항목 삭제");
